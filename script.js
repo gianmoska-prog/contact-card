@@ -1,183 +1,117 @@
 /* ─────────────────────────────────────────
-   MOSCATELLI — Contact Card Interactions
-   vCard · Copy · Share
+   MOSCATELLI — Private Contact Card
+   copy · share · vCard confirmation
 ───────────────────────────────────────── */
 
 (() => {
   'use strict';
 
   const contact = {
-    firstName: 'Gianluca',
-    lastName: 'Moscatelli',
     fullName: 'Gianluca Moscatelli',
     organisation: 'MOSCATELLI',
-    title: 'Founder',
+    title: 'Founder & Creative Director',
     email: 'gianluca.moscatelli@moscatelli.co',
     phoneDisplay: '+39 328 151 8424',
-    phone: '+393281518424',
-    website: 'https://www.moscatelli.co',
-    linkedIn: 'https://www.linkedin.com/in/gianluca-moscatelli-86b758232/',
-    instagram: 'https://www.instagram.com/gianluca__moscatelli',
-    locationCity: 'Roma',
-    locationCountry: 'Italia'
+    phoneCompact: '+393281518424',
+    website: 'https://www.moscatelli.co'
   };
 
-  const selectors = {
-    saveContact: '#saveContact',
-    saveLabel: '.btn-save-label',
-    copyEmail: '#copyEmail',
-    copyPhone: '#copyPhone',
-    shareContact: '#shareContact',
-    confirm: '.utility-confirm'
+  const saveContact = document.querySelector('#saveContact');
+  const copyEmail = document.querySelector('#copyEmail');
+  const copyPhone = document.querySelector('#copyPhone');
+  const shareContact = document.querySelector('#shareContact');
+
+  const canonicalFallback = 'https://www.moscatelli.co/gianluca';
+
+  const pageUrl = () => {
+    const current = window.location.href;
+    if (!current || current.startsWith('file:')) return canonicalFallback;
+    return current.split('#')[0];
   };
 
-  const saveButton = document.querySelector(selectors.saveContact);
-  const saveLabel = saveButton?.querySelector(selectors.saveLabel);
-  const copyEmailButton = document.querySelector(selectors.copyEmail);
-  const copyPhoneButton = document.querySelector(selectors.copyPhone);
-  const shareButton = document.querySelector(selectors.shareContact);
+  const fallbackCopy = (value) => {
+    const element = document.createElement('textarea');
+    element.value = value;
+    element.setAttribute('readonly', '');
+    element.style.position = 'fixed';
+    element.style.left = '-9999px';
+    element.style.top = '-9999px';
+    document.body.appendChild(element);
+    element.select();
 
-  const getCardUrl = () => {
-    const href = window.location.href;
-    if (!href || href.startsWith('file:')) return contact.website;
-    return href.split('#')[0];
-  };
-
-  const toVCardLine = (value) => String(value).replace(/\\/g, '\\\\').replace(/\n/g, '\\n').replace(/,/g, '\\,').replace(/;/g, '\\;');
-
-  const buildVCard = () => {
-    const lines = [
-      'BEGIN:VCARD',
-      'VERSION:3.0',
-      `N:${toVCardLine(contact.lastName)};${toVCardLine(contact.firstName)};;;`,
-      `FN:${toVCardLine(contact.fullName)}`,
-      `ORG:${toVCardLine(contact.organisation)}`,
-      `TITLE:${toVCardLine(contact.title)}`,
-      `EMAIL;TYPE=INTERNET,WORK:${toVCardLine(contact.email)}`,
-      `TEL;TYPE=CELL:${toVCardLine(contact.phoneDisplay)}`,
-      `URL;TYPE=Website:${toVCardLine(contact.website)}`,
-      `URL;TYPE=LinkedIn:${toVCardLine(contact.linkedIn)}`,
-      `URL;TYPE=Instagram:${toVCardLine(contact.instagram)}`,
-      `ADR;TYPE=WORK:;;;;${toVCardLine(contact.locationCity)};;${toVCardLine(contact.locationCountry)}`,
-      'END:VCARD'
-    ];
-
-    return `${lines.join('\r\n')}\r\n`;
-  };
-
-  const downloadVCard = () => {
-    const blob = new Blob([buildVCard()], { type: 'text/vcard;charset=utf-8' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-
-    link.href = url;
-    link.download = 'Gianluca-Moscatelli.vcf';
-    link.rel = 'noopener';
-    link.style.display = 'none';
-
-    document.body.appendChild(link);
-    link.click();
-    link.remove();
-
-    window.setTimeout(() => URL.revokeObjectURL(url), 1000);
-  };
-
-  const fallbackCopy = (text) => {
-    const area = document.createElement('textarea');
-    area.value = text;
-    area.setAttribute('readonly', '');
-    area.style.position = 'fixed';
-    area.style.top = '-9999px';
-    area.style.left = '-9999px';
-    document.body.appendChild(area);
-    area.select();
-
-    let success = false;
+    let copied = false;
     try {
-      success = document.execCommand('copy');
+      copied = document.execCommand('copy');
     } catch {
-      success = false;
+      copied = false;
     }
 
-    area.remove();
-    return success;
+    element.remove();
+    return copied;
   };
 
-  const copyText = async (text) => {
+  const copyText = async (value) => {
     if (navigator.clipboard && window.isSecureContext) {
       try {
-        await navigator.clipboard.writeText(text);
+        await navigator.clipboard.writeText(value);
         return true;
       } catch {
-        return fallbackCopy(text);
+        return fallbackCopy(value);
       }
     }
-    return fallbackCopy(text);
+    return fallbackCopy(value);
   };
 
-  const showUtilityConfirmation = (button, message = 'Copied') => {
-    const confirm = button?.querySelector(selectors.confirm);
-    if (!confirm) return;
+  const confirmOn = (button, message) => {
+    const target = button?.querySelector('em') || button?.querySelector('.save-contact__meta');
+    if (!target) return;
 
-    confirm.textContent = message;
-    confirm.classList.add('visible');
+    const original = target.dataset.original || target.textContent;
+    target.dataset.original = original;
+    target.textContent = message;
+    target.classList.add('is-visible');
+    button.classList.add('is-confirmed');
 
-    window.clearTimeout(confirm._moscatelliTimer);
-    confirm._moscatelliTimer = window.setTimeout(() => {
-      confirm.classList.remove('visible');
-      window.setTimeout(() => {
-        confirm.textContent = '';
-      }, 300);
-    }, 1400);
+    window.clearTimeout(button._moscatelliTimer);
+    button._moscatelliTimer = window.setTimeout(() => {
+      target.textContent = original;
+      target.classList.remove('is-visible');
+      button.classList.remove('is-confirmed');
+    }, 1500);
   };
 
-  const showSaveConfirmation = () => {
-    if (!saveButton || !saveLabel) return;
-
-    const original = saveLabel.textContent;
-    saveButton.classList.add('is-confirmed');
-    saveLabel.textContent = 'Contact Ready';
-
-    window.clearTimeout(saveButton._moscatelliTimer);
-    saveButton._moscatelliTimer = window.setTimeout(() => {
-      saveLabel.textContent = original;
-      saveButton.classList.remove('is-confirmed');
-    }, 1600);
-  };
-
-  saveButton?.addEventListener('click', () => {
-    downloadVCard();
-    showSaveConfirmation();
+  saveContact?.addEventListener('click', () => {
+    confirmOn(saveContact, 'Ready');
   });
 
-  copyEmailButton?.addEventListener('click', async () => {
+  copyEmail?.addEventListener('click', async () => {
     const copied = await copyText(contact.email);
-    showUtilityConfirmation(copyEmailButton, copied ? 'Copied' : 'Select');
+    confirmOn(copyEmail, copied ? 'Copied' : 'Select');
   });
 
-  copyPhoneButton?.addEventListener('click', async () => {
+  copyPhone?.addEventListener('click', async () => {
     const copied = await copyText(contact.phoneDisplay);
-    showUtilityConfirmation(copyPhoneButton, copied ? 'Copied' : 'Select');
+    confirmOn(copyPhone, copied ? 'Copied' : 'Select');
   });
 
-  shareButton?.addEventListener('click', async () => {
-    const shareData = {
+  shareContact?.addEventListener('click', async () => {
+    const data = {
       title: `${contact.fullName} — ${contact.organisation}`,
-      text: `${contact.fullName}, ${contact.title} at ${contact.organisation}`,
-      url: getCardUrl()
+      text: `${contact.fullName}, ${contact.title}`,
+      url: pageUrl()
     };
 
-    if (navigator.share && navigator.canShare?.(shareData) !== false) {
+    if (navigator.share && navigator.canShare?.(data) !== false) {
       try {
-        await navigator.share(shareData);
-        showUtilityConfirmation(shareButton, 'Shared');
+        await navigator.share(data);
+        confirmOn(shareContact, 'Shared');
         return;
       } catch (error) {
         if (error?.name === 'AbortError') return;
       }
     }
 
-    const copied = await copyText(shareData.url);
-    showUtilityConfirmation(shareButton, copied ? 'Link Copied' : 'Copy Link');
+    const copied = await copyText(data.url);
+    confirmOn(shareContact, copied ? 'Link Copied' : 'Copy Link');
   });
 })();

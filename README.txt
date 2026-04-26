@@ -1,4 +1,4 @@
-MOSCATELLI — Private Contact Card
+MOSCATELLI — Private Contact Card v2
 
 Files:
 - index.html
@@ -6,13 +6,21 @@ Files:
 - script.js
 - Gianluca-Moscatelli.vcf
 
-Deployment:
-Upload these files to a static host such as GitHub Pages, Netlify, Vercel, or your own Moscatelli hosting.
-Recommended final URL: https://www.moscatelli.co/gianluca or https://card.moscatelli.co
+Recommended URL:
+- https://www.moscatelli.co/gianluca
+- or https://card.moscatelli.co
 
-Important:
-The visible Save Contact button generates and downloads a vCard in the browser. The separate .vcf file is included as a standalone reference and fallback.
+What changed from v1:
+- Removed “MAISON” and replaced it with the quieter “Private Contact Card”.
+- Updated title to “Founder & Creative Director”.
+- Reworked the page into a more formal private credential/dossier layout.
+- Reduced the emphasis on generic app-style icons and made typography lead.
+- Added WhatsApp as a primary correspondence option.
+- Kept Instagram but moved it into the lower “Presence” section.
+- Changed Save Contact into a direct static .vcf link for better reliability.
+- Kept JavaScript only for subtle confirmation, copy, and share behaviour.
 
 Replace later:
-- og:image should eventually point to a real hosted preview image.
-- favicon can be replaced by an official Moscatelli monogram/favicon.
+- og:image should eventually point to a proper hosted Moscatelli social preview image.
+- The inline favicon placeholder should be replaced with the official Moscatelli monogram/favicon.
+- If you have the official wordmark SVG/PNG, add it and replace the text wordmark in index.html.
