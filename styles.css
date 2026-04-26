@@ -78,7 +78,7 @@ a {
 
 .hero {
   position: relative;
-  flex: 0 0 57%;
+  flex: 0 0 58%;
   min-height: 0;
   overflow: hidden;
 }
@@ -101,7 +101,7 @@ a {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.18) 38%, rgba(9,7,6,0.84) 78%, rgba(9,7,6,0.98) 100%),
+    linear-gradient(180deg, rgba(0,0,0,0.03) 0%, rgba(0,0,0,0.16) 34%, rgba(16,11,9,0.62) 72%, rgba(43,27,20,0.52) 86%, rgba(46,28,21,0.82) 94%, rgba(34,21,16,0.96) 100%),
     radial-gradient(ellipse 80% 60% at 50% 18%, transparent 20%, rgba(0,0,0,0.35) 80%);
 }
 
@@ -120,7 +120,7 @@ a {
   position: absolute;
   left: 28px;
   right: 28px;
-  bottom: 20px;
+  bottom: 30px;
   z-index: 2;
 }
 
@@ -169,19 +169,32 @@ a {
 
 .panel {
   position: relative;
+  z-index: 2;
   flex: 1;
   min-height: 0;
-  padding: 24px 28px 26px;
+  margin-top: -38px;
+  padding: 50px 28px 24px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   background:
-    linear-gradient(180deg, rgba(255,255,255,0.014), rgba(255,255,255,0.005)),
-    linear-gradient(180deg, rgba(19,13,11,0.52), rgba(10,8,7,0.90));
-  border-top: 1px solid rgba(232, 223, 209, 0.08);
+    linear-gradient(180deg, rgba(77, 46, 32, 0.22) 0%, rgba(41, 25, 19, 0.20) 12%, rgba(18, 12, 10, 0.88) 28%, rgba(10,8,7,0.96) 100%);
+}
+
+.panel::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 88px;
+  background: linear-gradient(180deg, rgba(98, 59, 39, 0.16) 0%, rgba(48, 29, 21, 0.12) 42%, rgba(9,7,6,0) 100%);
+  pointer-events: none;
 }
 
 .save-contact {
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -198,19 +211,20 @@ a {
 
 .actions {
   position: relative;
+  z-index: 1;
   margin-top: 18px;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px 34px;
-  padding: 6px 0 0;
+  padding: 8px 0 0;
 }
 
 .actions::before {
   content: "";
   position: absolute;
   left: 50%;
-  top: 6px;
-  bottom: 6px;
+  top: 8px;
+  bottom: 8px;
   width: 1px;
   transform: translateX(-50%);
   background: linear-gradient(
@@ -241,6 +255,24 @@ a {
   transition: color 260ms var(--ease), opacity 260ms var(--ease), transform 260ms var(--ease);
 }
 
+.panel-footer {
+  position: relative;
+  z-index: 1;
+  margin-top: auto;
+  padding-top: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-monogram {
+  width: 86px;
+  height: auto;
+  display: block;
+  opacity: 0.68;
+  filter: brightness(0) saturate(100%) invert(91%) sepia(17%) saturate(226%) hue-rotate(352deg) brightness(96%) contrast(93%);
+}
+
 .save-contact:hover,
 .save-contact:focus-visible,
 .actions a:hover,
@@ -261,24 +293,28 @@ a {
 }
 
 @media (max-height: 760px) {
-  .hero { flex-basis: 55%; }
-  .panel { padding-top: 20px; padding-bottom: 22px; }
-  .hero-copy { bottom: 18px; }
+  .hero { flex-basis: 56%; }
+  .hero-copy { bottom: 24px; }
   .hero-copy h1 { font-size: clamp(2.42rem, 7.4vw, 3.2rem); }
   .house-lockup { margin-top: 14px; gap: 5px; }
+  .panel { margin-top: -32px; padding-top: 42px; padding-bottom: 18px; }
   .actions { gap: 14px 28px; }
+  .panel-footer { padding-top: 12px; }
+  .footer-monogram { width: 76px; }
 }
 
 @media (max-width: 380px) {
   .card { width: 100vw; }
   .hero-copy,
   .panel { padding-left: 24px; padding-right: 24px; }
-  .hero-copy { bottom: 18px; }
+  .hero-copy { bottom: 24px; }
   .hero-copy h1 { font-size: clamp(2.28rem, 8.3vw, 3rem); }
   .role { font-size: 0.57rem; letter-spacing: 0.24em; }
   .house-brand { font-size: 0.58rem; letter-spacing: 0.50em; padding-left: 0.50em; }
+  .panel { margin-top: -34px; padding-top: 44px; }
   .actions { gap: 14px 24px; }
   .actions a { font-size: 0.64rem; letter-spacing: 0.18em; }
+  .footer-monogram { width: 78px; }
 }
 
 @media (min-width: 431px) {

@@ -3,11 +3,10 @@ MOSCATELLI — Editorial Dossier Contact Card
 This package is the standalone implementation of showcase direction 03: Editorial Dossier.
 
 Patched changes in this version:
-- Contact actions centered within each column
-- Added a very faint tapered central divider between the two columns
-- Moved MOSCATELLI / ROMA under the founder title
-- Increased tracking of the house wordmark lockup
-- Removed the separate footer lockup to tighten the composition
+- Added a gentle crossfade between the bottom of the portrait section and the warmer lower panel
+- Introduced a centered footer monogram using the newly supplied clean Moscatelli mark
+- Styled the footer monogram in the same ivory family as the contact actions
+- Kept the actions centered within their columns and preserved the faint tapered divider
 
 Files:
 - index.html
@@ -16,3 +15,4 @@ Files:
 - Gianluca-Moscatelli.vcf
 - assets/founder-portrait.jpg
 - assets/monogram-watermark.png
+- assets/monogram-footer.png
