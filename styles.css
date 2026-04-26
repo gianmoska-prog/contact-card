@@ -101,7 +101,7 @@ a {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(0,0,0,0.03) 0%, rgba(0,0,0,0.16) 34%, rgba(16,11,9,0.62) 72%, rgba(43,27,20,0.52) 86%, rgba(46,28,21,0.82) 94%, rgba(34,21,16,0.96) 100%),
+    linear-gradient(180deg, rgba(0,0,0,0.04) 0%, rgba(0,0,0,0.15) 34%, rgba(9,7,6,0.46) 68%, rgba(11,8,7,0.76) 82%, rgba(12,9,8,0.93) 92%, rgba(12,9,8,0.985) 100%),
     radial-gradient(ellipse 80% 60% at 50% 18%, transparent 20%, rgba(0,0,0,0.35) 80%);
 }
 
@@ -120,7 +120,7 @@ a {
   position: absolute;
   left: 28px;
   right: 28px;
-  bottom: 30px;
+  bottom: 44px;
   z-index: 2;
 }
 
@@ -178,7 +178,7 @@ a {
   flex-direction: column;
   justify-content: flex-start;
   background:
-    linear-gradient(180deg, rgba(77, 46, 32, 0.22) 0%, rgba(41, 25, 19, 0.20) 12%, rgba(18, 12, 10, 0.88) 28%, rgba(10,8,7,0.96) 100%);
+    linear-gradient(180deg, rgba(58, 34, 24, 0.10) 0%, rgba(24, 16, 13, 0.46) 12%, rgba(13, 10, 9, 0.88) 30%, rgba(10,8,7,0.975) 100%);
 }
 
 .panel::before {
@@ -187,8 +187,8 @@ a {
   left: 0;
   right: 0;
   top: 0;
-  height: 88px;
-  background: linear-gradient(180deg, rgba(98, 59, 39, 0.16) 0%, rgba(48, 29, 21, 0.12) 42%, rgba(9,7,6,0) 100%);
+  height: 68px;
+  background: linear-gradient(180deg, rgba(52, 31, 22, 0.055) 0%, rgba(22, 15, 12, 0.03) 44%, rgba(9,7,6,0) 100%);
   pointer-events: none;
 }
 
@@ -266,7 +266,7 @@ a {
 }
 
 .footer-monogram {
-  width: 86px;
+  width: 77px;
   height: auto;
   display: block;
   opacity: 0.68;
@@ -294,27 +294,27 @@ a {
 
 @media (max-height: 760px) {
   .hero { flex-basis: 56%; }
-  .hero-copy { bottom: 24px; }
+  .hero-copy { bottom: 36px; }
   .hero-copy h1 { font-size: clamp(2.42rem, 7.4vw, 3.2rem); }
   .house-lockup { margin-top: 14px; gap: 5px; }
   .panel { margin-top: -32px; padding-top: 42px; padding-bottom: 18px; }
   .actions { gap: 14px 28px; }
   .panel-footer { padding-top: 12px; }
-  .footer-monogram { width: 76px; }
+  .footer-monogram { width: 68px; }
 }
 
 @media (max-width: 380px) {
   .card { width: 100vw; }
   .hero-copy,
   .panel { padding-left: 24px; padding-right: 24px; }
-  .hero-copy { bottom: 24px; }
+  .hero-copy { bottom: 34px; }
   .hero-copy h1 { font-size: clamp(2.28rem, 8.3vw, 3rem); }
   .role { font-size: 0.57rem; letter-spacing: 0.24em; }
   .house-brand { font-size: 0.58rem; letter-spacing: 0.50em; padding-left: 0.50em; }
   .panel { margin-top: -34px; padding-top: 44px; }
   .actions { gap: 14px 24px; }
   .actions a { font-size: 0.64rem; letter-spacing: 0.18em; }
-  .footer-monogram { width: 78px; }
+  .footer-monogram { width: 70px; }
 }
 
 @media (min-width: 431px) {

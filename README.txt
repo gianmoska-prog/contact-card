@@ -16,3 +16,7 @@ Files:
 - assets/founder-portrait.jpg
 - assets/monogram-watermark.png
 - assets/monogram-footer.png
+
+Additional patch (v4):
+- Darkened and subdued the portrait-to-panel crossfade so it sits beneath the identity text and blends almost imperceptibly
+- Reduced the footer monogram size by approximately 10%
