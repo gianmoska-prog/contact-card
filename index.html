@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="description" content="Gianluca Moscatelli — Founder & Creative Director, MOSCATELLI. Private contact card." />
+  <meta name="description" content="Gianluca Moscatelli — Founder & Creative Director, MOSCATELLI. Contact." />
   <meta name="theme-color" content="#0c0a09" />
   <meta name="color-scheme" content="dark" />
 
   <meta property="og:title" content="Gianluca Moscatelli — MOSCATELLI" />
-  <meta property="og:description" content="Private contact card" />
+  <meta property="og:description" content="Contact" />
   <meta property="og:type" content="profile" />
   <meta property="og:url" content="https://www.moscatelli.co/gianluca" />
   <meta property="og:image" content="https://www.moscatelli.co/og-image.jpg" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Gianluca Moscatelli — MOSCATELLI" />
-  <meta name="twitter:description" content="Private contact card" />
+  <meta name="twitter:description" content="Contact" />
 
   <title>Gianluca Moscatelli — MOSCATELLI</title>
 
@@ -24,7 +24,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=Jost:wght@250;300;400&display=swap" rel="stylesheet" />
-
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -35,74 +34,43 @@
   </div>
 
   <main class="shell" role="main">
-    <section class="credential" aria-label="Gianluca Moscatelli private contact card">
-      <div class="credential__edge" aria-hidden="true"></div>
+    <section class="card" aria-label="Gianluca Moscatelli contact card">
+      <div class="card__edge" aria-hidden="true"></div>
+      <img class="card__monogram" src="monogram-watermark.png" alt="" aria-hidden="true" />
 
-      <header class="house-header" aria-label="MOSCATELLI">
-        <p class="private-label">Private Contact Card</p>
-        <div class="wordmark" aria-label="MOSCATELLI">MOSCATELLI</div>
+      <header class="masthead">
+        <p class="masthead__label">Contact</p>
+        <p class="masthead__wordmark">MOSCATELLI</p>
       </header>
 
-      <section class="identity" aria-label="Founder identity">
-        <p class="identity__name">Gianluca Moscatelli</p>
+      <section class="identity" aria-label="Identity">
+        <h1 class="identity__name">Gianluca Moscatelli</h1>
         <p class="identity__title">Founder &amp; Creative Director</p>
         <p class="identity__location">Roma – Italia</p>
       </section>
 
-      <nav class="action-list" aria-label="Contact actions">
-        <a class="action action--primary" id="saveContact" href="Gianluca-Moscatelli.vcf" download aria-label="Save Gianluca Moscatelli contact card">
-          <span class="action__label">Save Contact</span>
-          <span class="action__meta" aria-live="polite">vCard</span>
-        </a>
+      <nav class="actions" aria-label="Contact actions">
+        <a class="action-link action-link--primary" href="Gianluca-Moscatelli.vcf" download id="saveContact">Save Contact</a>
+        <a class="action-link" href="https://www.moscatelli.co" target="_blank" rel="noopener noreferrer">Website</a>
 
-        <a class="action" href="https://wa.me/393281518424" target="_blank" rel="noopener noreferrer" aria-label="Open WhatsApp conversation with Gianluca Moscatelli">
-          <span class="action__label">WhatsApp</span>
-          <span class="action__meta" aria-hidden="true">↗</span>
-        </a>
+        <a class="action-link" href="https://wa.me/393281518424" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        <a class="action-link" href="https://www.linkedin.com/in/gianluca-moscatelli-86b758232/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
 
-        <a class="action" href="mailto:gianluca.moscatelli@moscatelli.co" aria-label="Send email to Gianluca Moscatelli">
-          <span class="action__label">Email</span>
-          <span class="action__meta" aria-hidden="true">↗</span>
-        </a>
+        <a class="action-link" href="mailto:gianluca.moscatelli@moscatelli.co">Email</a>
+        <a class="action-link" href="https://www.instagram.com/gianluca__moscatelli" target="_blank" rel="noopener noreferrer">Instagram</a>
 
-        <a class="action" href="tel:+393281518424" aria-label="Call Gianluca Moscatelli">
-          <span class="action__label">Call</span>
-          <span class="action__meta" aria-hidden="true">↗</span>
-        </a>
-
-        <a class="action" href="https://www.moscatelli.co" target="_blank" rel="noopener noreferrer" aria-label="Visit MOSCATELLI website">
-          <span class="action__label">Website</span>
-          <span class="action__meta" aria-hidden="true">↗</span>
-        </a>
-
-        <a class="action" href="https://www.linkedin.com/in/gianluca-moscatelli-86b758232/" target="_blank" rel="noopener noreferrer" aria-label="Open LinkedIn profile">
-          <span class="action__label">LinkedIn</span>
-          <span class="action__meta" aria-hidden="true">↗</span>
-        </a>
-
-        <a class="action" href="https://www.instagram.com/gianluca__moscatelli" target="_blank" rel="noopener noreferrer" aria-label="Open Instagram profile">
-          <span class="action__label">Instagram</span>
-          <span class="action__meta" aria-hidden="true">↗</span>
-        </a>
-
-        <button class="action action--button" id="copyEmail" type="button" aria-label="Copy email address">
-          <span class="action__label">Copy Email</span>
-          <span class="action__meta" aria-live="polite"></span>
-        </button>
-
-        <button class="action action--button" id="copyPhone" type="button" aria-label="Copy phone number">
-          <span class="action__label">Copy Number</span>
-          <span class="action__meta" aria-live="polite"></span>
-        </button>
-
-        <button class="action action--button" id="shareContact" type="button" aria-label="Share this contact card">
-          <span class="action__label">Share Contact</span>
-          <span class="action__meta" aria-live="polite"></span>
-        </button>
+        <a class="action-link" href="tel:+393281518424">Telephone</a>
+        <button class="action-link action-link--button" type="button" id="shareContact">Share</button>
       </nav>
 
-      <footer class="footer" aria-label="Footer">
-        <p>MOSCATELLI · Roma</p>
+      <section class="utilities" aria-label="Utility actions">
+        <button class="utility-link" type="button" id="copyEmail">Copy Email</button>
+        <span class="utilities__dot" aria-hidden="true">·</span>
+        <button class="utility-link" type="button" id="copyPhone">Copy Number</button>
+      </section>
+
+      <footer class="footer">
+        <p class="footer__mark">MOSCATELLI · Roma</p>
       </footer>
     </section>
   </main>

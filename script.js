@@ -1,8 +1,4 @@
-/* ─────────────────────────────────────────
-   MOSCATELLI — Private Contact Card
-   copy · share · vCard confirmation
-───────────────────────────────────────── */
-
+/* MOSCATELLI — Contact Card v4 */
 (() => {
   'use strict';
 
@@ -11,16 +7,15 @@
     organisation: 'MOSCATELLI',
     title: 'Founder & Creative Director',
     email: 'gianluca.moscatelli@moscatelli.co',
-    phoneDisplay: '+39 328 151 8424',
-    phoneCompact: '+393281518424',
-    website: 'https://www.moscatelli.co'
+    phoneDisplay: '+39 328 151 8424'
   };
 
-  const saveContact = document.querySelector('#saveContact');
+  const shareContact = document.querySelector('#shareContact');
   const copyEmail = document.querySelector('#copyEmail');
   const copyPhone = document.querySelector('#copyPhone');
-  const shareContact = document.querySelector('#shareContact');
+  const saveContact = document.querySelector('#saveContact');
 
+  const originalLabels = new Map();
   const canonicalFallback = 'https://www.moscatelli.co/gianluca';
 
   const pageUrl = () => {
@@ -62,22 +57,18 @@
     return fallbackCopy(value);
   };
 
-  const confirmOn = (button, message) => {
-    const target = button?.querySelector('em') || button?.querySelector('.action__meta') || button?.querySelector('.save-contact__meta');
-    if (!target) return;
-
-    const original = target.dataset.original || target.textContent;
-    target.dataset.original = original;
-    target.textContent = message;
-    target.classList.add('is-visible');
-    button.classList.add('is-confirmed');
-
-    window.clearTimeout(button._moscatelliTimer);
-    button._moscatelliTimer = window.setTimeout(() => {
-      target.textContent = original;
-      target.classList.remove('is-visible');
-      button.classList.remove('is-confirmed');
-    }, 1500);
+  const confirmOn = (element, message) => {
+    if (!element) return;
+    if (!originalLabels.has(element)) {
+      originalLabels.set(element, element.textContent.trim());
+    }
+    element.textContent = message;
+    element.classList.add('is-confirmed');
+    window.clearTimeout(element._moscatelliTimer);
+    element._moscatelliTimer = window.setTimeout(() => {
+      element.textContent = originalLabels.get(element);
+      element.classList.remove('is-confirmed');
+    }, 1450);
   };
 
   saveContact?.addEventListener('click', () => {

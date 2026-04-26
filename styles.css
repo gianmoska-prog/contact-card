@@ -1,4 +1,4 @@
-/* MOSCATELLI — Private Contact Card v3 */
+/* MOSCATELLI — Contact Card v4 */
 
 *, *::before, *::after {
   box-sizing: border-box;
@@ -8,24 +8,24 @@
 
 :root {
   --black: #0c0a09;
-  --black-soft: #11100f;
-  --panel-top: rgba(19, 17, 16, 0.96);
+  --black-deep: #090807;
+  --panel-top: rgba(18, 16, 15, 0.96);
   --panel-bottom: rgba(10, 9, 8, 0.98);
   --ivory: #e5dccb;
-  --ivory-soft: #cabfa9;
-  --ivory-muted: #958b7d;
-  --line: rgba(229, 220, 203, 0.11);
-  --line-strong: rgba(229, 220, 203, 0.19);
+  --ivory-soft: #cdc1ab;
+  --ivory-muted: #978d7f;
+  --line: rgba(229, 220, 203, 0.09);
+  --line-strong: rgba(229, 220, 203, 0.16);
   --oxblood: #6a2634;
   --oxblood-soft: rgba(106, 38, 52, 0.18);
-  --shadow: rgba(0, 0, 0, 0.42);
+  --shadow: rgba(0, 0, 0, 0.44);
 
   --font-display: 'Cinzel', 'Trajan Pro', 'Times New Roman', serif;
   --font-serif: 'Cormorant Garamond', Garamond, 'Times New Roman', serif;
   --font-ui: 'Jost', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
-  --card-width: 470px;
+  --card-width: 468px;
 }
 
 html {
@@ -38,14 +38,13 @@ html {
 
 body {
   min-height: 100svh;
+  overflow: hidden;
   background: var(--black);
   color: var(--ivory);
   font-family: var(--font-ui);
-  overflow: hidden;
 }
 
-button,
-a {
+button, a {
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -60,15 +59,15 @@ button {
   overflow: hidden;
   pointer-events: none;
   background:
-    radial-gradient(ellipse 85% 58% at 50% -6%, rgba(255, 241, 214, 0.03), transparent 55%),
-    linear-gradient(180deg, #0c0a09 0%, #0d0c0b 44%, #090807 100%);
+    radial-gradient(ellipse 84% 58% at 50% -10%, rgba(255, 241, 214, 0.03), transparent 54%),
+    linear-gradient(180deg, var(--black) 0%, #0d0c0b 44%, var(--black-deep) 100%);
 }
 
 .ambient::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at center, transparent 32%, rgba(0, 0, 0, 0.6) 100%);
+  background: radial-gradient(ellipse at center, transparent 34%, rgba(0, 0, 0, 0.58) 100%);
 }
 
 .ambient__mist {
@@ -77,19 +76,19 @@ button {
   height: 62vmax;
   border-radius: 999px;
   filter: blur(34px);
-  opacity: 0.42;
+  opacity: 0.4;
 }
 
 .ambient__mist--one {
-  top: -28vmax;
-  left: -24vmax;
+  top: -30vmax;
+  left: -23vmax;
   background: radial-gradient(circle, rgba(106, 38, 52, 0.15), transparent 62%);
 }
 
 .ambient__mist--two {
   right: -32vmax;
-  bottom: -28vmax;
-  background: radial-gradient(circle, rgba(84, 68, 54, 0.12), transparent 62%);
+  bottom: -26vmax;
+  background: radial-gradient(circle, rgba(84, 68, 54, 0.11), transparent 62%);
 }
 
 .ambient__grain {
@@ -109,14 +108,14 @@ button {
   padding: max(14px, env(safe-area-inset-top)) max(14px, env(safe-area-inset-right)) max(14px, env(safe-area-inset-bottom)) max(14px, env(safe-area-inset-left));
 }
 
-.credential {
+.card {
   position: relative;
   width: min(100%, var(--card-width));
   height: calc(100svh - max(28px, env(safe-area-inset-top) + env(safe-area-inset-bottom)));
   max-height: 860px;
-  padding: clamp(18px, 2.7svh, 28px) clamp(18px, 5vw, 28px) clamp(14px, 2.2svh, 22px);
+  padding: clamp(18px, 2.7svh, 28px) clamp(18px, 5vw, 30px) clamp(16px, 2.4svh, 24px);
   background:
-    linear-gradient(180deg, rgba(255,255,255,0.02), transparent 26%),
+    linear-gradient(180deg, rgba(255,255,255,0.018), transparent 24%),
     linear-gradient(150deg, var(--panel-top), var(--panel-bottom));
   border: 1px solid var(--line);
   box-shadow: 0 26px 80px var(--shadow), inset 0 1px 0 rgba(255,255,255,0.02);
@@ -127,45 +126,41 @@ button {
   gap: clamp(10px, 1.8svh, 18px);
 }
 
-.credential::before {
-  content: 'M';
-  position: absolute;
-  inset-inline: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  margin: auto;
-  width: fit-content;
-  font-family: var(--font-display);
-  font-size: clamp(6rem, 26vw, 10rem);
-  line-height: 1;
-  letter-spacing: -0.08em;
-  color: rgba(229, 220, 203, 0.018);
-  pointer-events: none;
-  user-select: none;
-}
-
-.credential__edge {
+.card__edge {
   position: absolute;
   inset: 12px;
   border: 1px solid rgba(229, 220, 203, 0.05);
   pointer-events: none;
 }
 
-.house-header,
+.card__monogram {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  transform: translate(-50%, -49%);
+  width: min(76%, 320px);
+  max-height: 42%;
+  object-fit: contain;
+  opacity: 0.10;
+  pointer-events: none;
+  user-select: none;
+  filter: blur(0.15px);
+}
+
+.masthead,
 .identity,
-.action-list,
+.actions,
+.utilities,
 .footer {
   position: relative;
   z-index: 1;
 }
 
-.house-header {
+.masthead {
   text-align: center;
-  padding-top: 2px;
 }
 
-.private-label {
-  margin-bottom: clamp(8px, 1.4svh, 12px);
+.masthead__label {
+  margin-bottom: clamp(8px, 1.2svh, 10px);
   font-size: 0.54rem;
   font-weight: 300;
   letter-spacing: 0.34em;
@@ -173,15 +168,14 @@ button {
   color: var(--ivory-muted);
 }
 
-.wordmark {
+.masthead__wordmark {
   font-family: var(--font-display);
-  font-size: clamp(1.05rem, 3.9vw, 1.32rem);
+  font-size: clamp(0.96rem, 3.8vw, 1.16rem);
   font-weight: 400;
-  letter-spacing: 0.5em;
-  line-height: 1;
+  letter-spacing: 0.58em;
   text-transform: uppercase;
-  color: var(--ivory);
-  padding-left: 0.5em;
+  color: var(--ivory-soft);
+  padding-left: 0.58em;
 }
 
 .identity {
@@ -189,9 +183,9 @@ button {
 }
 
 .identity__name {
-  margin-bottom: clamp(5px, 0.8svh, 8px);
+  margin-bottom: clamp(6px, 0.9svh, 10px);
   font-family: var(--font-serif);
-  font-size: clamp(1.8rem, 7.2vw, 2.55rem);
+  font-size: clamp(1.86rem, 7.4vw, 2.62rem);
   font-weight: 300;
   font-style: italic;
   line-height: 0.98;
@@ -200,7 +194,7 @@ button {
 
 .identity__title {
   margin-bottom: 6px;
-  font-size: 0.63rem;
+  font-size: 0.62rem;
   font-weight: 300;
   letter-spacing: 0.24em;
   text-transform: uppercase;
@@ -210,97 +204,122 @@ button {
 .identity__location {
   font-size: 0.58rem;
   font-weight: 300;
-  letter-spacing: 0.28em;
+  letter-spacing: 0.26em;
   text-transform: uppercase;
   color: var(--ivory-muted);
 }
 
-.action-list {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(6px, 1svh, 10px);
+.actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: clamp(16px, 5vw, 26px);
+  row-gap: clamp(8px, 1.2svh, 12px);
   flex: 1 1 auto;
-  justify-content: center;
+  align-content: center;
 }
 
-.action {
+.action-link {
   position: relative;
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 14px;
-  min-height: clamp(38px, 5.3svh, 48px);
-  padding: 0 clamp(14px, 4vw, 18px);
-  border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.012);
+  min-height: 28px;
+  padding: 4px 0 8px;
+  border: none;
+  background: transparent;
   color: var(--ivory);
   text-decoration: none;
-  transition: border-color 420ms var(--ease), background 420ms var(--ease), transform 420ms var(--ease), color 420ms var(--ease);
+  font-size: clamp(0.67rem, 2vw, 0.76rem);
+  font-weight: 300;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  justify-content: flex-start;
+  cursor: pointer;
+  transition: color 380ms var(--ease), transform 380ms var(--ease);
 }
 
-.action::before {
+.action-link::after {
   content: '';
   position: absolute;
-  inset: 6px;
-  border: 1px solid rgba(229, 220, 203, 0.035);
-  opacity: 0.9;
-  pointer-events: none;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(229, 220, 203, 0.16), rgba(229, 220, 203, 0.04));
+  transform-origin: left center;
+  transition: background 380ms var(--ease), transform 380ms var(--ease);
 }
 
-.action:hover,
-.action:focus-visible {
-  border-color: rgba(229, 220, 203, 0.18);
-  background: linear-gradient(135deg, rgba(106, 38, 52, 0.12), rgba(255,255,255,0.016));
-  transform: translateY(-1px);
+.action-link:hover,
+.action-link:focus-visible {
+  color: #f0e9dd;
+  transform: translateX(1px);
   outline: none;
 }
 
-.action--primary {
-  margin-bottom: clamp(2px, 0.4svh, 6px);
-  border-color: var(--line-strong);
-  background: linear-gradient(135deg, var(--oxblood-soft), rgba(255,255,255,0.015));
+.action-link:hover::after,
+.action-link:focus-visible::after {
+  background: linear-gradient(90deg, rgba(106, 38, 52, 0.55), rgba(229, 220, 203, 0.08));
 }
 
-.action--button {
-  width: 100%;
-  cursor: pointer;
+.action-link--primary {
+  color: var(--ivory);
 }
 
-.action__label {
-  font-size: clamp(0.63rem, 1.9vw, 0.72rem);
-  font-weight: 300;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
+.action-link--primary::after {
+  background: linear-gradient(90deg, rgba(106, 38, 52, 0.52), rgba(229, 220, 203, 0.08));
 }
 
-.action__meta {
-  flex-shrink: 0;
-  min-width: 48px;
-  text-align: right;
-  font-size: clamp(0.53rem, 1.7vw, 0.6rem);
-  font-weight: 300;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--ivory-muted);
-}
-
-.action.is-confirmed .action__meta,
-.action__meta.is-visible {
+.action-link.is-confirmed {
   color: var(--ivory-soft);
+}
+
+.utilities {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.utility-link {
+  border: none;
+  background: transparent;
+  color: var(--ivory-muted);
+  cursor: pointer;
+  font-size: 0.54rem;
+  font-weight: 300;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  transition: color 320ms var(--ease);
+}
+
+.utility-link:hover,
+.utility-link:focus-visible {
+  color: var(--ivory-soft);
+  outline: none;
+}
+
+.utility-link.is-confirmed {
+  color: var(--ivory-soft);
+}
+
+.utilities__dot {
+  color: rgba(229, 220, 203, 0.4);
+  font-size: 0.8rem;
+  line-height: 1;
 }
 
 .footer {
   text-align: center;
-  padding-top: 2px;
 }
 
-.footer p {
+.footer__mark {
   font-family: var(--font-display);
-  font-size: 0.56rem;
+  font-size: 0.54rem;
   font-weight: 400;
   letter-spacing: 0.34em;
   text-transform: uppercase;
-  color: rgba(229, 220, 203, 0.42);
+  color: rgba(229, 220, 203, 0.38);
   padding-left: 0.34em;
 }
 
@@ -310,23 +329,23 @@ button {
 }
 
 @media (max-height: 760px) {
-  .credential {
+  .card {
     padding-top: 16px;
     padding-bottom: 14px;
     gap: 10px;
   }
 
-  .private-label {
+  .masthead__label {
     font-size: 0.5rem;
   }
 
-  .wordmark {
-    font-size: 0.98rem;
-    letter-spacing: 0.54em;
+  .masthead__wordmark {
+    font-size: 0.9rem;
+    letter-spacing: 0.62em;
   }
 
   .identity__name {
-    font-size: clamp(1.55rem, 6.2vw, 2.05rem);
+    font-size: clamp(1.6rem, 6.2vw, 2.08rem);
   }
 
   .identity__title {
@@ -337,27 +356,34 @@ button {
     font-size: 0.54rem;
   }
 
-  .action {
-    min-height: 36px;
+  .action-link {
+    font-size: 0.64rem;
+    min-height: 25px;
+    padding-bottom: 6px;
   }
 }
 
 @media (max-height: 680px) {
-  .credential__edge {
+  .card__edge {
     inset: 10px;
   }
 
-  .private-label {
+  .card__monogram {
+    width: min(68%, 280px);
+    opacity: 0.085;
+  }
+
+  .masthead__label {
     margin-bottom: 6px;
   }
 
   .identity__name {
-    margin-bottom: 3px;
-    font-size: clamp(1.42rem, 5.8vw, 1.88rem);
+    margin-bottom: 4px;
+    font-size: clamp(1.46rem, 5.8vw, 1.9rem);
   }
 
   .identity__title {
-    margin-bottom: 3px;
+    margin-bottom: 4px;
     letter-spacing: 0.2em;
   }
 
@@ -365,32 +391,41 @@ button {
     letter-spacing: 0.22em;
   }
 
-  .action-list {
-    gap: 5px;
+  .actions {
+    row-gap: 6px;
   }
 
-  .action {
-    min-height: 33px;
-    padding-inline: 12px;
-  }
-
-  .action__label {
+  .action-link {
     font-size: 0.6rem;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.18em;
+    min-height: 23px;
+    padding-bottom: 5px;
   }
 
-  .action__meta {
-    min-width: 42px;
+  .utility-link,
+  .footer__mark {
     font-size: 0.5rem;
   }
+}
 
-  .footer p {
-    font-size: 0.52rem;
+@media (max-width: 360px) {
+  .card {
+    padding-inline: 16px;
+  }
+
+  .actions {
+    column-gap: 12px;
+  }
+
+  .action-link {
+    font-size: 0.58rem;
+    letter-spacing: 0.16em;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .action {
+  .action-link,
+  .utility-link {
     transition: none;
   }
 }
