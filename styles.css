@@ -5,16 +5,19 @@
 }
 
 :root {
-  --black: #0c0a09;
-  --black-deep: #090807;
-  --panel-top: rgba(16, 14, 13, 0.97);
-  --panel-bottom: rgba(10, 9, 8, 0.99);
-  --ivory: #e5dccb;
-  --ivory-soft: #d5cab7;
-  --ivory-muted: #9f9384;
-  --line: rgba(229, 220, 203, 0.07);
-  --line-strong: rgba(229, 220, 203, 0.15);
-  --shadow: rgba(0, 0, 0, 0.52);
+  --black: #100b0a;
+  --black-deep: #0c0908;
+  --umber: rgba(92, 48, 31, 0.18);
+  --oxblood: rgba(92, 27, 22, 0.20);
+  --panel-top: rgba(19, 13, 12, 0.93);
+  --panel-mid: rgba(16, 11, 10, 0.965);
+  --panel-bottom: rgba(11, 8, 7, 0.985);
+  --ivory: #e6ddcf;
+  --ivory-soft: #d6cab8;
+  --ivory-muted: #9e9181;
+  --line: rgba(230, 221, 207, 0.065);
+  --line-strong: rgba(230, 221, 207, 0.145);
+  --shadow: rgba(0, 0, 0, 0.54);
   --font-display: 'Cinzel', 'Trajan Pro', 'Times New Roman', serif;
   --font-serif: 'Cormorant Garamond', Garamond, 'Times New Roman', serif;
   --font-ui: 'Jost', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -53,15 +56,16 @@ button {
   overflow: hidden;
   pointer-events: none;
   background:
-    radial-gradient(ellipse 84% 58% at 50% -10%, rgba(255, 241, 214, 0.022), transparent 54%),
-    linear-gradient(180deg, var(--black) 0%, #0d0c0b 44%, var(--black-deep) 100%);
+    radial-gradient(ellipse 78% 42% at 50% -8%, rgba(136, 72, 38, 0.11), transparent 58%),
+    radial-gradient(ellipse 120% 68% at 50% 20%, rgba(77, 24, 21, 0.16), transparent 58%),
+    linear-gradient(180deg, #1a100f 0%, #130d0c 26%, #0f0a09 58%, #0b0807 100%);
 }
 
 .ambient::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at center, transparent 34%, rgba(0, 0, 0, 0.58) 100%);
+  background: radial-gradient(ellipse at center, transparent 34%, rgba(0, 0, 0, 0.52) 100%);
 }
 
 .ambient__mist {
@@ -69,20 +73,20 @@ button {
   width: 62vmax;
   height: 62vmax;
   border-radius: 999px;
-  filter: blur(34px);
+  filter: blur(36px);
   opacity: 0.32;
 }
 
 .ambient__mist--one {
   top: -30vmax;
-  left: -23vmax;
-  background: radial-gradient(circle, rgba(106, 38, 52, 0.11), transparent 62%);
+  left: -20vmax;
+  background: radial-gradient(circle, rgba(98, 46, 30, 0.14), transparent 62%);
 }
 
 .ambient__mist--two {
-  right: -32vmax;
-  bottom: -26vmax;
-  background: radial-gradient(circle, rgba(84, 68, 54, 0.08), transparent 62%);
+  right: -28vmax;
+  bottom: -24vmax;
+  background: radial-gradient(circle, rgba(88, 24, 20, 0.10), transparent 62%);
 }
 
 .ambient__grain {
@@ -91,6 +95,15 @@ button {
   opacity: 0.018;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 260 260' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.92' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
   background-size: 210px 210px;
+}
+
+.ambient__veil {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.02) 0%, transparent 18%),
+    linear-gradient(90deg, rgba(255,255,255,0.015) 0, rgba(255,255,255,0.005) 1px, transparent 1px, transparent 10px);
+  opacity: 0.18;
 }
 
 .shell {
@@ -111,36 +124,37 @@ button {
   width: min(100%, var(--card-width));
   height: calc(100svh - max(28px, env(safe-area-inset-top) + env(safe-area-inset-bottom)));
   max-height: 860px;
-  padding: clamp(20px, 2.8svh, 28px) clamp(20px, 5vw, 30px) clamp(18px, 2.2svh, 22px);
+  padding: clamp(22px, 3svh, 28px) clamp(20px, 5vw, 30px) clamp(20px, 2.4svh, 24px);
   background:
-    linear-gradient(180deg, rgba(255,255,255,0.014), transparent 24%),
-    linear-gradient(150deg, var(--panel-top), var(--panel-bottom));
+    linear-gradient(180deg, rgba(255,255,255,0.013), transparent 24%),
+    radial-gradient(ellipse 90% 55% at 50% 0%, rgba(119, 61, 35, 0.045), transparent 58%),
+    linear-gradient(180deg, var(--panel-top) 0%, var(--panel-mid) 52%, var(--panel-bottom) 100%);
   border: 1px solid var(--line);
-  box-shadow: 0 26px 80px var(--shadow), inset 0 1px 0 rgba(255,255,255,0.02);
+  box-shadow: 0 26px 80px var(--shadow), inset 0 1px 0 rgba(255,255,255,0.018);
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: 1fr auto;
 }
 
 .card__edge {
   position: absolute;
   inset: 12px;
-  border: 1px solid rgba(229, 220, 203, 0.03);
+  border: 1px solid rgba(230, 221, 207, 0.03);
   pointer-events: none;
 }
 
 .card__monogram {
   position: absolute;
   left: 50%;
-  top: 60.5%;
+  top: 58%;
   transform: translate(-50%, -50%);
-  width: min(57%, 242px);
-  max-height: 31%;
+  width: min(56%, 236px);
+  max-height: 30%;
   object-fit: contain;
-  opacity: 0.020;
+  opacity: 0.018;
   pointer-events: none;
   user-select: none;
-  filter: blur(0.15px);
+  filter: blur(0.2px);
 }
 
 .card__content,
@@ -150,13 +164,13 @@ button {
 }
 
 .card__content {
-  flex: 1 1 auto;
+  align-self: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: clamp(18px, 2.6svh, 24px);
-  transform: translateY(-3.2svh);
+  width: 100%;
+  gap: clamp(20px, 2.9svh, 28px);
+  transform: translateY(-2.3svh);
 }
 
 .identity {
@@ -164,16 +178,15 @@ button {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 0;
 }
 
 .portrait {
-  width: clamp(82px, 22vw, 102px);
+  width: clamp(84px, 22vw, 104px);
   aspect-ratio: 4 / 5;
   overflow: hidden;
-  margin-bottom: 12px;
-  border: 1px solid rgba(229, 220, 203, 0.09);
-  background: rgba(255,255,255,0.015);
+  margin-bottom: 14px;
+  border: 1px solid rgba(230, 221, 207, 0.085);
+  background: rgba(255,255,255,0.012);
 }
 
 .portrait img {
@@ -182,13 +195,13 @@ button {
   display: block;
   object-fit: cover;
   object-position: center 18%;
-  filter: grayscale(100%) brightness(0.88) contrast(1.03);
+  filter: grayscale(100%) brightness(0.88) contrast(1.04);
 }
 
 .identity__name {
-  margin-bottom: 4px;
+  margin-bottom: 6px;
   font-family: var(--font-serif);
-  font-size: clamp(1.78rem, 7vw, 2.38rem);
+  font-size: clamp(1.82rem, 7.1vw, 2.42rem);
   font-weight: 400;
   line-height: 0.98;
   letter-spacing: 0.004em;
@@ -196,19 +209,19 @@ button {
 }
 
 .identity__title {
-  font-size: 0.62rem;
+  font-size: 0.63rem;
   font-weight: 300;
-  letter-spacing: 0.23em;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
   color: var(--ivory-soft);
 }
 
 .contact-panel {
-  width: min(100%, 338px);
+  width: min(100%, 342px);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 14px;
+  gap: 16px;
 }
 
 .save-button {
@@ -219,11 +232,11 @@ button {
   color: var(--ivory);
   font-size: 0.64rem;
   font-weight: 300;
-  letter-spacing: 0.26em;
+  letter-spacing: 0.27em;
   text-transform: uppercase;
   border: 1px solid var(--line-strong);
-  background: transparent;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.015);
+  background: rgba(255,255,255,0.006);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.01);
   transition:
     color 320ms var(--ease),
     border-color 320ms var(--ease),
@@ -234,8 +247,8 @@ button {
 .save-button:hover,
 .save-button:focus-visible {
   outline: none;
-  border-color: rgba(229, 220, 203, 0.22);
-  background: rgba(106, 38, 52, 0.045);
+  border-color: rgba(230, 221, 207, 0.21);
+  background: rgba(120, 56, 36, 0.055);
   transform: translateY(-1px);
 }
 
@@ -245,28 +258,29 @@ button {
 
 .actions {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(126px, 1fr));
   width: 100%;
   align-items: center;
   justify-items: center;
-  column-gap: clamp(14px, 4vw, 26px);
-  row-gap: clamp(8px, 1.2svh, 10px);
+  column-gap: clamp(12px, 3vw, 18px);
+  row-gap: 12px;
 }
 
 .action-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 28px;
-  padding: 3px 4px;
+  min-height: 30px;
+  width: 100%;
+  padding: 3px 2px;
   border: none;
   background: transparent;
   color: var(--ivory);
   text-decoration: none;
   text-align: center;
-  font-size: clamp(0.72rem, 2.35vw, 0.82rem);
+  font-size: clamp(0.72rem, 2.3vw, 0.80rem);
   font-weight: 300;
-  letter-spacing: 0.17em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   cursor: pointer;
   transition: color 320ms var(--ease), transform 320ms var(--ease), opacity 320ms var(--ease);
@@ -274,18 +288,14 @@ button {
 
 .action-link:hover,
 .action-link:focus-visible {
-  color: #f0e9dd;
+  color: #f3ece1;
   transform: translateY(-1px);
   outline: none;
 }
 
-.action-link--button {
-  appearance: none;
-}
-
 .footer {
   text-align: center;
-  margin-top: auto;
+  align-self: end;
   padding-bottom: 2px;
 }
 
@@ -295,7 +305,7 @@ button {
   font-weight: 400;
   letter-spacing: 0.46em;
   text-transform: uppercase;
-  color: rgba(229, 220, 203, 0.54);
+  color: rgba(230, 221, 207, 0.53);
   padding-left: 0.46em;
   margin-bottom: 5px;
 }
@@ -306,12 +316,12 @@ button {
   font-weight: 400;
   letter-spacing: 0.40em;
   text-transform: uppercase;
-  color: rgba(229, 220, 203, 0.30);
+  color: rgba(230, 221, 207, 0.29);
   padding-left: 0.40em;
 }
 
 :focus-visible {
-  outline: 1px solid rgba(229, 220, 203, 0.20);
+  outline: 1px solid rgba(230, 221, 207, 0.18);
   outline-offset: 2px;
 }
 
@@ -322,17 +332,17 @@ button {
   }
 
   .card__content {
-    gap: 14px;
-    transform: translateY(-2.4svh);
+    gap: 16px;
+    transform: translateY(-1.8svh);
   }
 
   .portrait {
-    width: 74px;
+    width: 76px;
     margin-bottom: 10px;
   }
 
   .identity__name {
-    font-size: clamp(1.56rem, 6vw, 2.02rem);
+    font-size: clamp(1.58rem, 6vw, 2.06rem);
   }
 
   .identity__title {
@@ -340,7 +350,7 @@ button {
   }
 
   .contact-panel {
-    width: min(100%, 314px);
+    width: min(100%, 316px);
     gap: 12px;
   }
 
@@ -374,14 +384,14 @@ button {
   }
 
   .card__monogram {
-    width: min(52%, 214px);
-    opacity: 0.017;
-    top: 61.5%;
+    width: min(51%, 212px);
+    opacity: 0.015;
+    top: 59%;
   }
 
   .card__content {
-    gap: 11px;
-    transform: translateY(-1.6svh);
+    gap: 12px;
+    transform: translateY(-0.7svh);
   }
 
   .portrait {
@@ -390,17 +400,17 @@ button {
   }
 
   .identity__name {
-    font-size: clamp(1.38rem, 5.8vw, 1.84rem);
-    margin-bottom: 3px;
+    font-size: clamp(1.40rem, 5.8vw, 1.86rem);
+    margin-bottom: 4px;
   }
 
   .identity__title {
     font-size: 0.54rem;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.19em;
   }
 
   .contact-panel {
-    width: min(100%, 296px);
+    width: min(100%, 298px);
     gap: 9px;
   }
 
@@ -410,7 +420,8 @@ button {
   }
 
   .actions {
-    column-gap: 10px;
+    grid-template-columns: repeat(2, minmax(112px, 1fr));
+    column-gap: 8px;
     row-gap: 6px;
   }
 
@@ -438,6 +449,10 @@ button {
 
   .contact-panel {
     width: min(100%, 286px);
+  }
+
+  .actions {
+    grid-template-columns: repeat(2, minmax(104px, 1fr));
   }
 
   .action-link {

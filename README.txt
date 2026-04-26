@@ -1,4 +1,4 @@
-MOSCATELLI Contact Card v7
+MOSCATELLI Contact Card v8
 
 Files:
 - index.html
@@ -8,15 +8,14 @@ Files:
 - monogram-watermark.png
 - founder-portrait.png
 
-v7 refinement notes:
-- Compressed the vertical rhythm to reduce dead space.
-- Re-grouped identity and contact actions into a tighter central composition.
-- Slightly enlarged the portrait and tightened its crop.
-- Brought the footer closer in perceived relation while preserving discretion.
+v8 refinement notes:
+- Replaced Copy Email with Instagram.
+- Shifted the background palette toward a warmer deep umber / oxblood atmosphere.
+- Reworked internal proportions and spacing to feel more deliberate and less mechanically stretched.
+- Refined the card structure so the main composition reads as a centred, better-resolved object.
 - Kept the page mobile-first and non-scrollable.
 
 Notes:
 - Static site suitable for GitHub Pages / Netlify / Vercel.
 - Save Contact downloads the included vCard file.
-- Copy Email is handled in script.js.
 - Replace the og-image URL when your final preview image is ready.
