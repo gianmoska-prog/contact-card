@@ -1,0 +1,13 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Moscatelli;Gianluca;;;
+FN:Gianluca Moscatelli
+ORG:MOSCATELLI
+TITLE:Founder
+EMAIL;TYPE=INTERNET,WORK:gianluca.moscatelli@moscatelli.co
+TEL;TYPE=CELL:+39 328 151 8424
+URL;TYPE=Website:https://www.moscatelli.co
+URL;TYPE=LinkedIn:https://www.linkedin.com/in/gianluca-moscatelli-86b758232/
+URL;TYPE=Instagram:https://www.instagram.com/gianluca__moscatelli
+ADR;TYPE=WORK:;;;;Roma;;Italia
+END:VCARD
