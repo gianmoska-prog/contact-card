@@ -1,4 +1,4 @@
-MOSCATELLI Contact Card v4
+MOSCATELLI Contact Card v5
 
 Files:
 - index.html
@@ -10,6 +10,7 @@ Files:
 Notes:
 - Static site suitable for GitHub Pages / Netlify / Vercel.
 - Save Contact links directly to the included vCard file.
-- Copy and share actions are handled in script.js.
-- The background monogram was derived from the supplied image and processed to remove the original background.
+- Copy actions are handled in script.js.
+- Monogram watermark is processed from the supplied source image.
+- Replace the portrait placeholder with your real founder portrait when ready.
 - Replace the og-image URL when your final preview image is ready.

@@ -1,4 +1,4 @@
-/* MOSCATELLI — Contact Card v4 */
+/* MOSCATELLI — Contact Card v5 */
 (() => {
   'use strict';
 
@@ -10,19 +10,10 @@
     phoneDisplay: '+39 328 151 8424'
   };
 
-  const shareContact = document.querySelector('#shareContact');
   const copyEmail = document.querySelector('#copyEmail');
   const copyPhone = document.querySelector('#copyPhone');
   const saveContact = document.querySelector('#saveContact');
-
   const originalLabels = new Map();
-  const canonicalFallback = 'https://www.moscatelli.co/gianluca';
-
-  const pageUrl = () => {
-    const current = window.location.href;
-    if (!current || current.startsWith('file:')) return canonicalFallback;
-    return current.split('#')[0];
-  };
 
   const fallbackCopy = (value) => {
     const element = document.createElement('textarea');
@@ -33,14 +24,12 @@
     element.style.top = '-9999px';
     document.body.appendChild(element);
     element.select();
-
     let copied = false;
     try {
       copied = document.execCommand('copy');
     } catch {
       copied = false;
     }
-
     element.remove();
     return copied;
   };
@@ -83,26 +72,5 @@
   copyPhone?.addEventListener('click', async () => {
     const copied = await copyText(contact.phoneDisplay);
     confirmOn(copyPhone, copied ? 'Copied' : 'Select');
-  });
-
-  shareContact?.addEventListener('click', async () => {
-    const data = {
-      title: `${contact.fullName} — ${contact.organisation}`,
-      text: `${contact.fullName}, ${contact.title}`,
-      url: pageUrl()
-    };
-
-    if (navigator.share && navigator.canShare?.(data) !== false) {
-      try {
-        await navigator.share(data);
-        confirmOn(shareContact, 'Shared');
-        return;
-      } catch (error) {
-        if (error?.name === 'AbortError') return;
-      }
-    }
-
-    const copied = await copyText(data.url);
-    confirmOn(shareContact, copied ? 'Link Copied' : 'Copy Link');
   });
 })();
