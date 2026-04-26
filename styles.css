@@ -101,7 +101,14 @@ a {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(0,0,0,0.04) 0%, rgba(0,0,0,0.15) 34%, rgba(9,7,6,0.46) 68%, rgba(11,8,7,0.76) 82%, rgba(12,9,8,0.93) 92%, rgba(12,9,8,0.985) 100%),
+    linear-gradient(180deg,
+      rgba(0,0,0,0.03) 0%,
+      rgba(0,0,0,0.10) 28%,
+      rgba(8,6,5,0.22) 56%,
+      rgba(10,8,7,0.42) 72%,
+      rgba(14,10,8,0.62) 84%,
+      rgba(19,13,10,0.82) 94%,
+      rgba(22,15,12,0.93) 100%),
     radial-gradient(ellipse 80% 60% at 50% 18%, transparent 20%, rgba(0,0,0,0.35) 80%);
 }
 
@@ -120,7 +127,7 @@ a {
   position: absolute;
   left: 28px;
   right: 28px;
-  bottom: 44px;
+  bottom: 48px;
   z-index: 2;
 }
 
@@ -172,13 +179,20 @@ a {
   z-index: 2;
   flex: 1;
   min-height: 0;
-  margin-top: -38px;
-  padding: 50px 28px 24px;
+  margin-top: -56px;
+  padding: 68px 28px 24px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   background:
-    linear-gradient(180deg, rgba(58, 34, 24, 0.10) 0%, rgba(24, 16, 13, 0.46) 12%, rgba(13, 10, 9, 0.88) 30%, rgba(10,8,7,0.975) 100%);
+    linear-gradient(180deg,
+      rgba(74, 43, 29, 0.00) 0%,
+      rgba(70, 40, 28, 0.028) 10%,
+      rgba(57, 34, 24, 0.075) 22%,
+      rgba(35, 23, 18, 0.20) 36%,
+      rgba(19, 14, 12, 0.48) 52%,
+      rgba(12, 10, 9, 0.82) 68%,
+      rgba(10,8,7,0.975) 100%);
 }
 
 .panel::before {
@@ -187,8 +201,12 @@ a {
   left: 0;
   right: 0;
   top: 0;
-  height: 68px;
-  background: linear-gradient(180deg, rgba(52, 31, 22, 0.055) 0%, rgba(22, 15, 12, 0.03) 44%, rgba(9,7,6,0) 100%);
+  height: 108px;
+  background: linear-gradient(180deg,
+    rgba(78, 46, 31, 0.012) 0%,
+    rgba(48, 29, 21, 0.020) 18%,
+    rgba(22, 15, 12, 0.022) 44%,
+    rgba(9,7,6,0) 100%);
   pointer-events: none;
 }
 
@@ -294,10 +312,10 @@ a {
 
 @media (max-height: 760px) {
   .hero { flex-basis: 56%; }
-  .hero-copy { bottom: 36px; }
+  .hero-copy { bottom: 40px; }
   .hero-copy h1 { font-size: clamp(2.42rem, 7.4vw, 3.2rem); }
   .house-lockup { margin-top: 14px; gap: 5px; }
-  .panel { margin-top: -32px; padding-top: 42px; padding-bottom: 18px; }
+  .panel { margin-top: -48px; padding-top: 58px; padding-bottom: 18px; }
   .actions { gap: 14px 28px; }
   .panel-footer { padding-top: 12px; }
   .footer-monogram { width: 68px; }
@@ -307,11 +325,11 @@ a {
   .card { width: 100vw; }
   .hero-copy,
   .panel { padding-left: 24px; padding-right: 24px; }
-  .hero-copy { bottom: 34px; }
+  .hero-copy { bottom: 38px; }
   .hero-copy h1 { font-size: clamp(2.28rem, 8.3vw, 3rem); }
   .role { font-size: 0.57rem; letter-spacing: 0.24em; }
   .house-brand { font-size: 0.58rem; letter-spacing: 0.50em; padding-left: 0.50em; }
-  .panel { margin-top: -34px; padding-top: 44px; }
+  .panel { margin-top: -50px; padding-top: 60px; }
   .actions { gap: 14px 24px; }
   .actions a { font-size: 0.64rem; letter-spacing: 0.18em; }
   .footer-monogram { width: 70px; }
