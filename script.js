@@ -1,19 +1,13 @@
-/* MOSCATELLI — Contact Card v5 */
 (() => {
   'use strict';
 
   const contact = {
-    fullName: 'Gianluca Moscatelli',
-    organisation: 'MOSCATELLI',
-    title: 'Founder & Creative Director',
-    email: 'gianluca.moscatelli@moscatelli.co',
-    phoneDisplay: '+39 328 151 8424'
+    email: 'gianluca.moscatelli@moscatelli.co'
   };
 
-  const copyEmail = document.querySelector('#copyEmail');
-  const copyPhone = document.querySelector('#copyPhone');
   const saveContact = document.querySelector('#saveContact');
-  const originalLabels = new Map();
+  const copyEmail = document.querySelector('#copyEmail');
+  const labels = new Map();
 
   const fallbackCopy = (value) => {
     const element = document.createElement('textarea');
@@ -46,31 +40,21 @@
     return fallbackCopy(value);
   };
 
-  const confirmOn = (element, message) => {
+  const confirm = (element, message) => {
     if (!element) return;
-    if (!originalLabels.has(element)) {
-      originalLabels.set(element, element.textContent.trim());
-    }
+    if (!labels.has(element)) labels.set(element, element.textContent.trim());
     element.textContent = message;
     element.classList.add('is-confirmed');
-    window.clearTimeout(element._moscatelliTimer);
-    element._moscatelliTimer = window.setTimeout(() => {
-      element.textContent = originalLabels.get(element);
+    clearTimeout(element._timer);
+    element._timer = setTimeout(() => {
+      element.textContent = labels.get(element);
       element.classList.remove('is-confirmed');
-    }, 1450);
+    }, 1400);
   };
 
-  saveContact?.addEventListener('click', () => {
-    confirmOn(saveContact, 'Ready');
-  });
-
+  saveContact?.addEventListener('click', () => confirm(saveContact, 'Ready'));
   copyEmail?.addEventListener('click', async () => {
     const copied = await copyText(contact.email);
-    confirmOn(copyEmail, copied ? 'Copied' : 'Select');
-  });
-
-  copyPhone?.addEventListener('click', async () => {
-    const copied = await copyText(contact.phoneDisplay);
-    confirmOn(copyPhone, copied ? 'Copied' : 'Select');
+    confirm(copyEmail, copied ? 'Copied' : 'Select');
   });
 })();
