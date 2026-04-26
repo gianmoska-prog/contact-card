@@ -63,7 +63,7 @@
   };
 
   const confirmOn = (button, message) => {
-    const target = button?.querySelector('em') || button?.querySelector('.save-contact__meta');
+    const target = button?.querySelector('em') || button?.querySelector('.action__meta') || button?.querySelector('.save-contact__meta');
     if (!target) return;
 
     const original = target.dataset.original || target.textContent;
