@@ -57,3 +57,9 @@ Additional patch (v11):
 - Reduced subtitle tracking slightly and increased ROMA visibility marginally
 - Tightened action-row spacing and softened the central divider
 - Made a small transition clean-up to reduce residual panel separation
+
+Patch v13 — 2026-06-20
+- Replaced assets/founder-portrait.jpg with the newly supplied editorial portrait/background image.
+- Preserved the existing v12 structure, typography, contact order, links, VCF file, monogram assets, and CSS layout.
+- No contact details were changed.
+
